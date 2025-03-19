@@ -1,0 +1,29 @@
+<div class="bg-white rounded-lg shadow-xl p-6 w-full">
+  <!-- Popup Title -->
+  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Confirm Action</h2>
+
+  <!-- Message -->
+  <p class="text-gray-600 mb-6">{{ data.message }}</p>
+
+  <!-- Actions -->
+  <div class="flex justify-end space-x-4">
+    <!-- Cancel Button -->
+    <button
+      mat-button
+      (click)="onCancel()"
+      class="px-6 py-2 text-gray-600 hover:text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all transform hover:scale-105 active:scale-95"
+    >
+      Cancel
+    </button>
+
+    <!-- Confirm Button -->
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="onConfirm()"
+      class="px-6 py-2 bg-gradient-to-r from-red-600 to-pink-600 text-white font-semibold rounded-md shadow-lg hover:from-red-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all transform hover:scale-105 active:scale-95"
+    >
+      Confirm
+    </button>
+  </div>
+</div>

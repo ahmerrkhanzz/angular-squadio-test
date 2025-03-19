@@ -1,0 +1,21 @@
+<div class="h-screen bg-gray-100 shadow-lg w-full">
+  <div class="flex flex-col p-4">
+    <!-- Sidebar Header -->
+    <div class="flex items-center justify-center mb-6">
+      <span class="text-gray-800 text-xl font-bold">Menu</span>
+    </div>
+
+    <!-- Dynamic Sidebar List -->
+    <nav class="flex flex-col space-y-2">
+      <a
+        *ngFor="let item of menuItems"
+        [routerLink]="item.link"
+        class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200 rounded-md transition-all"
+        role="listitem"
+      >
+        <mat-icon class="mr-3 text-gray-600">{{ item.icon }}</mat-icon>
+        {{ item.name }}
+      </a>
+    </nav>
+  </div>
+</div>

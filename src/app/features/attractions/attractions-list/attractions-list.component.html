@@ -1,0 +1,28 @@
+<div class="flex flex-col p-5">
+  <div class="p-6 shadow-sm">
+    <div class="flex justify-between items-center">
+      <!-- Heading -->
+      <h2 class="text-3xl font-bold text-gray-800">Attractions List</h2>
+
+      <!-- Add User Button -->
+      <button
+        class="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-md shadow-md hover:from-blue-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all transform hover:scale-105 active:scale-95"
+        (click)="openAttractionPopup()"
+      >
+        Add Attraction
+      </button>
+    </div>
+  </div>
+  <app-common-table
+    [data]="attractions"
+    [columns]="columns"
+    [totalItems]="totalItems"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    (pageChange)="onPageChange($event)"
+    (searchChange)="onSearchChange($event)"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
+  >
+  </app-common-table>
+</div>

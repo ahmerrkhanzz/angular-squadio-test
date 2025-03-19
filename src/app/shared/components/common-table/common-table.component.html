@@ -1,0 +1,75 @@
+<div class="p-6">
+  <!-- Loading Spinner -->
+  <div class="mb-6">
+    <input
+      type="text"
+      (keyup)="onSearchChange($event)"
+      placeholder="Search"
+      class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+    />
+  </div>
+
+  <!-- Loading Spinner -->
+  <div
+    *ngIf="!dataSource.data.length"
+    class="flex justify-center items-center py-10"
+  >
+    <div
+      class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"
+    ></div>
+  </div>
+
+  <!-- Table -->
+  <div class="fixed-height" *ngIf="dataSource.data.length">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      class="mat-elevation-z8 w-full"
+    >
+      <!-- Dynamic Column Definitions -->
+      <ng-container *ngFor="let column of columns" [matColumnDef]="column.key">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ column.header }}
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row[column.key] }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let row" class="min-w-[120px]">
+          <button mat-icon-button (click)="onEdit(row)">
+            <mat-icon>edit</mat-icon>
+            <!-- Edit Icon -->
+          </button>
+          <button mat-icon-button (click)="onDelete(row)">
+            <mat-icon>delete</mat-icon>
+            <!-- Delete Icon -->
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Table Header and Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <!-- No Results Found Message -->
+  <div *ngIf="dataSource.data.length === 0" class="flex justify-center">
+    <mat-icon>search_off</mat-icon>
+    <p>No results found.</p>
+  </div>
+
+  <!-- Paginator -->
+  <mat-paginator
+    [length]="totalItems"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)"
+    showFirstLastButtons
+  >
+  </mat-paginator>
+</div>
